@@ -8,8 +8,8 @@ const testHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     if (flag == "true"){
       const client = await clientPromise;
-      const db = client.db('sample_db'); // Replace with your database name
-      const collection = db.collection('sample_collection');
+      const db = client.db('test'); // Replace with your database name
+      const collection = db.collection('test_c');
       const data = await collection.find({}).toArray();
       res.status(200).json(data);
     }else{
