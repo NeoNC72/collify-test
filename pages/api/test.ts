@@ -20,7 +20,7 @@ const testHandler = async (req: NextApiRequest, res: NextApiResponse) => {
    
   } catch (e) {
     console.error(e);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: 'Internal Server Error' + e });
   }
 };
 
