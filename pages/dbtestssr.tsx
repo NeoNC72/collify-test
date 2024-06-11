@@ -5,8 +5,10 @@ import { useState, useEffect, use } from 'react';
 
 
 
+
 export async function getServerSideProps(){
-  const response = await fetch('http://localhost:3000/api/test');
+  const url = process.env.URL;
+  const response = await fetch(url + 'api/test');
   const data = await response.json();
   console.log(data);
   return {
@@ -43,6 +45,7 @@ export default function Home({ data }: { data: any }) {
       <div>
         <h1>DATA</h1>
         <pre>{JSON.stringify(datay, null, 2)}</pre>
+        <button onClick={fetchData}>Fetch Data</button>
       </div>
     );
   }
