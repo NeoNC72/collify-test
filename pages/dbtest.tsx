@@ -1,22 +1,20 @@
 import Image from "next/image";
-import clientPromise from '../src/lib/mongodb_l';
+import { useState, useEffect } from 'react';
 
-export async function getServerSideProps(){
-  const client = await clientPromise;
-  const db = client.db('test');
-  const collection = db.collection('test_c');
-  const data = await collection.find({}).limit(10).toArray();
-  console.log(data);
-  return {
-    props: {
-      data : JSON.parse(JSON.stringify(data)),
-    },
-  };
-}
+export default function Home() {
+  const [data, setData] = useState(null);
 
+  useEffect(() => {
+    async function fetchData() {
+      // Assuming you have an endpoint to fetch data from, replace '/api/data' with your actual data endpoint
+      const response = await fetch('/api/test');
+      const newData = await response.json();
+      setData(newData);
+    }
 
+    fetchData();
+  }, []); // Empty dependency array means this effect runs once on mount
 
-export default function Home({ data }: { data: any }) {
   return (
     <div>
       <h1>DATA</h1>
@@ -24,3 +22,4 @@ export default function Home({ data }: { data: any }) {
     </div>
   );
 }
+
