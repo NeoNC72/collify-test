@@ -9,7 +9,7 @@ import { headers } from 'next/headers';
 
 
 export async function getServerSideProps(){
-  const url = process.env.HOST;
+  const url = process.env.URL;
   console.log(url);
   const response = await fetch(url + 'api/test');
   const data = await response.json();
