@@ -23,7 +23,10 @@ export default function Home() {
               width={100}
               height={24}
               priority
+
             />
+            <h1 className="sr-only">Fest honza je koště</h1>
+
           </a>
         </div>
       </div>
